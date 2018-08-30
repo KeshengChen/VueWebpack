@@ -1,18 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
 let router = new Router({
 	mode: 'history',
   	routes: [
-    	{
-      	path: '/',
-      	name: 'HelloWorld',
-      	component: HelloWorld
-    	}
-  	]
+    {
+        path: '/index',
+        meta: {
+          title: '首页'
+        },
+        component: (resolve) => require(['../component/index.vue'], resolve)
+    },
+    {
+        path: '/personal',
+        meta: {
+          title: '登录'
+        },
+        component: (resolve) => require(['../component/personal.vue'], resolve)
+    },
+    {
+        path: '*',
+        redirect: '/index'
+    }
+  ]
 })
 
 router.beforeEach((to, from, next) => {
